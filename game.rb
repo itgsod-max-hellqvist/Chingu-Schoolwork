@@ -6,8 +6,14 @@ class Game < Chingu::Window
 		def initialize
 			super
 			self.input = {esc: :exit}
+			@background_image = Gosu::Image.new(self, "galaxy.jpg", true)
 			@player = Player.create
 		end
+		def draw
+		@player.draw
+		@background_image.draw(0,0,0)
+	end
+	
 end
 
 class Player < Chingu::GameObject
@@ -26,25 +32,25 @@ class Player < Chingu::GameObject
 		}
 	end
 	def left
-		unless @x - 28 <= 0
+		unless @x - 26 <= 0
 		@x -= 3
 	end
 	end
 
 	def right
-		unless @x + 28 >= 800
+		unless @x + 26 >= 800
 		@x += 3
 	end
 	end
 
 	def down
-		unless @y + 28 <= 0
+		unless @y + 26 >= 600
 		@y += 3
 	end
 	end
 
 	def up
-		unless @y - 28 >= 600
+		unless @y - 26 <= 0
 		@y -= 3
 	end
 	end
